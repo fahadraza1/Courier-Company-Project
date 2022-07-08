@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="Model1TargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Model1.Customer" />
+          <EntitySet Name="Consignments" EntityType="Model1.Consignment" />
+          <EntitySet Name="Destinations" EntityType="Model1.Destination" />
+          <EntitySet Name="Trackings" EntityType="Model1.Tracking" />
+          <AssociationSet Name="CustomerConsignment" Association="Model1.CustomerConsignment">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Consignment" EntitySet="Consignments" />
+          </AssociationSet>
+          <AssociationSet Name="ConsignmentDestination" Association="Model1.ConsignmentDestination">
+            <End Role="Consignment" EntitySet="Consignments" />
+            <End Role="Destination" EntitySet="Destinations" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerTracking" Association="Model1.CustomerTracking">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Tracking" EntitySet="Trackings" />
+          </AssociationSet>
+          <AssociationSet Name="DestinationTracking" Association="Model1.DestinationTracking">
+            <End Role="Destination" EntitySet="Destinations" />
+            <End Role="Tracking" EntitySet="Trackings" />
+          </AssociationSet>
+          <AssociationSet Name="ConsignmentTracking" Association="Model1.ConsignmentTracking">
+            <End Role="Consignment" EntitySet="Consignments" />
+            <End Role="Tracking" EntitySet="Trackings" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustId" />
+          </Key>
+          <Property Name="CustId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustName" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <NavigationProperty Name="Consignments" Relationship="Model1.CustomerConsignment" FromRole="Customer" ToRole="Consignment" />
+          <NavigationProperty Name="Trackings" Relationship="Model1.CustomerTracking" FromRole="Customer" ToRole="Tracking" />
+        </EntityType>
+        <EntityType Name="Consignment">
+          <Key>
+            <PropertyRef Name="ConsignNo" />
+          </Key>
+          <Property Name="ConsignNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="Weight" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Model1.CustomerConsignment" FromRole="Consignment" ToRole="Customer" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Destination" Relationship="Model1.ConsignmentDestination" FromRole="Consignment" ToRole="Destination" />
+          <NavigationProperty Name="Tracking" Relationship="Model1.ConsignmentTracking" FromRole="Consignment" ToRole="Tracking" />
+        </EntityType>
+        <EntityType Name="Destination">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country" Type="String" Nullable="false" />
+          <Property Name="State" Type="String" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="false" />
+          <Property Name="Street" Type="String" Nullable="false" />
+          <Property Name="HouseNumber" Type="String" Nullable="false" />
+          <NavigationProperty Name="Consignment" Relationship="Model1.ConsignmentDestination" FromRole="Destination" ToRole="Consignment" />
+          <NavigationProperty Name="Tracking" Relationship="Model1.DestinationTracking" FromRole="Destination" ToRole="Tracking" />
+        </EntityType>
+        <EntityType Name="Tracking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Customer" Relationship="Model1.CustomerTracking" FromRole="Tracking" ToRole="Customer" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Destination" Relationship="Model1.DestinationTracking" FromRole="Tracking" ToRole="Destination" />
+          <NavigationProperty Name="Consignment" Relationship="Model1.ConsignmentTracking" FromRole="Tracking" ToRole="Consignment" />
+          <Property Name="ConsignNo" Type="String" Nullable="false" />
+          <Property Name="CustName" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="CustomerConsignment">
+          <End Type="Model1.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="Model1.Consignment" Role="Consignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustId" />
+            </Principal>
+            <Dependent Role="Consignment">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ConsignmentDestination">
+          <End Type="Model1.Consignment" Role="Consignment" Multiplicity="1" />
+          <End Type="Model1.Destination" Role="Destination" Multiplicity="1" />
+        </Association>
+        <Association Name="CustomerTracking">
+          <End Type="Model1.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="Model1.Tracking" Role="Tracking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustId" />
+            </Principal>
+            <Dependent Role="Tracking">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DestinationTracking">
+          <End Type="Model1.Destination" Role="Destination" Multiplicity="1" />
+          <End Type="Model1.Tracking" Role="Tracking" Multiplicity="1" />
+        </Association>
+        <Association Name="ConsignmentTracking">
+          <End Type="Model1.Consignment" Role="Consignment" Multiplicity="1" />
+          <End Type="Model1.Tracking" Role="Tracking" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model1" />
+        <Alias Key="Target" Value="Model1.Store" />
+        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

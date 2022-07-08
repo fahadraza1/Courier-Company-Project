@@ -1,0 +1,8 @@
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\bin\Debug\EcomerceStore.exe.config
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\bin\Debug\EcomerceStore.exe
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\bin\Debug\EcomerceStore.pdb
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\EcomerceStore.csproj.AssemblyReference.cache
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\EcomerceStore.csproj.SuggestedBindingRedirects.cache
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\EcomerceStore.csproj.CoreCompileInputs.cache
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\EcomerceStore.exe
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\EcomerceStore.pdb
