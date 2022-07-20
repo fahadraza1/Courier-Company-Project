@@ -11,3 +11,10 @@ E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\Courie
 E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\CourierCompanyTCS.csproj.CopyComplete
 E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\EcomerceStore.exe
 E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\EcomerceStore.pdb
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\EcomerceStore.AboutBox1.resources
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\EcomerceStore.Form1.resources
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\CourierCompanyTCS.csproj.GenerateResource.cache
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\UserControl1.g.cs
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\EcomerceStore_Content.g.cs
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\EcomerceStore_MarkupCompile.cache
+E:\Github\Coding Basics\Assignment1\EcomerceStore\EcomerceStore\obj\Debug\EcomerceStore_MarkupCompile.lref

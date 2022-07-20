@@ -1,4 +1,130 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
-  <EntityContainer Name="Model1TargetContainer" />
+<Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Consignments">
+    <Key>
+      <PropertyRef Name="ConsignNo" />
+    </Key>
+    <Property Name="ConsignNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Weight" Type="int" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="Destination_Id" Type="int" Nullable="false" />
+    <Property Name="Tracking_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustId" />
+    </Key>
+    <Property Name="CustId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Destinations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Country" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="State" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Street" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HouseNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Tracking_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Trackings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="int" Nullable="false" />
+    <Property Name="ConsignNo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CustName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ConsignmentDestination">
+    <End Role="Destinations" Type="Self.Destinations" Multiplicity="1" />
+    <End Role="Consignments" Type="Self.Consignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Destinations">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Consignments">
+        <PropertyRef Name="Destination_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ConsignmentTracking">
+    <End Role="Trackings" Type="Self.Trackings" Multiplicity="1" />
+    <End Role="Consignments" Type="Self.Consignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trackings">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Consignments">
+        <PropertyRef Name="Tracking_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerConsignment">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Consignments" Type="Self.Consignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustId" />
+      </Principal>
+      <Dependent Role="Consignments">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerTracking">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Trackings" Type="Self.Trackings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustId" />
+      </Principal>
+      <Dependent Role="Trackings">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DestinationTracking">
+    <End Role="Trackings" Type="Self.Trackings" Multiplicity="1" />
+    <End Role="Destinations" Type="Self.Destinations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trackings">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Destinations">
+        <PropertyRef Name="Tracking_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="Consignments" EntityType="Self.Consignments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Destinations" EntityType="Self.Destinations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Trackings" EntityType="Self.Trackings" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ConsignmentDestination" Association="Self.FK_ConsignmentDestination">
+      <End Role="Destinations" EntitySet="Destinations" />
+      <End Role="Consignments" EntitySet="Consignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ConsignmentTracking" Association="Self.FK_ConsignmentTracking">
+      <End Role="Trackings" EntitySet="Trackings" />
+      <End Role="Consignments" EntitySet="Consignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerConsignment" Association="Self.FK_CustomerConsignment">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Consignments" EntitySet="Consignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerTracking" Association="Self.FK_CustomerTracking">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Trackings" EntitySet="Trackings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DestinationTracking" Association="Self.FK_DestinationTracking">
+      <End Role="Trackings" EntitySet="Trackings" />
+      <End Role="Destinations" EntitySet="Destinations" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>

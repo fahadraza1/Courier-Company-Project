@@ -31,9 +31,9 @@
       <PropertyRef Name="CustId" />
     </Key>
     <Property Name="CustId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CustName" Type="String" Nullable="false" />
-    <Property Name="Phone" Type="String" Nullable="false" />
-    <Property Name="Address" Type="String" Nullable="false" />
+    <Property Name="CustName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Consignments" Relationship="Model1.CustomerConsignment" FromRole="Customer" ToRole="Consignment" />
     <NavigationProperty Name="Trackings" Relationship="Model1.CustomerTracking" FromRole="Customer" ToRole="Tracking" />
   </EntityType>
@@ -42,7 +42,7 @@
       <PropertyRef Name="ConsignNo" />
     </Key>
     <Property Name="ConsignNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Type" Type="String" Nullable="false" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="Weight" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Customer" Relationship="Model1.CustomerConsignment" FromRole="Consignment" ToRole="Customer" />
     <Property Name="CustomerId" Type="Int32" Nullable="false" />
@@ -54,11 +54,11 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Country" Type="String" Nullable="false" />
-    <Property Name="State" Type="String" Nullable="false" />
-    <Property Name="City" Type="String" Nullable="false" />
-    <Property Name="Street" Type="String" Nullable="false" />
-    <Property Name="HouseNumber" Type="String" Nullable="false" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Street" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="HouseNumber" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Consignment" Relationship="Model1.ConsignmentDestination" FromRole="Destination" ToRole="Consignment" />
     <NavigationProperty Name="Tracking" Relationship="Model1.DestinationTracking" FromRole="Destination" ToRole="Tracking" />
   </EntityType>
@@ -71,8 +71,8 @@
     <Property Name="CustomerId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Destination" Relationship="Model1.DestinationTracking" FromRole="Tracking" ToRole="Destination" />
     <NavigationProperty Name="Consignment" Relationship="Model1.ConsignmentTracking" FromRole="Tracking" ToRole="Consignment" />
-    <Property Name="ConsignNo" Type="String" Nullable="false" />
-    <Property Name="CustName" Type="String" Nullable="false" />
+    <Property Name="ConsignNo" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="CustName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
   </EntityType>
   <Association Name="CustomerConsignment">
     <End Type="Model1.Customer" Role="Customer" Multiplicity="1" />

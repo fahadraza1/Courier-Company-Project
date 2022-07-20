@@ -1,6 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
-  <Alias Key="Model" Value="Model1" />
-  <Alias Key="Target" Value="Model1.Store" />
-  <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer" />
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Customer)">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CustId" ColumnName="CustId" />
+          <ScalarProperty Name="CustName" ColumnName="CustName" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Consignments">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Consignment)">
+        <MappingFragment StoreEntitySet="Consignments">
+          <ScalarProperty Name="ConsignNo" ColumnName="ConsignNo" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Destinations">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Destination)">
+        <MappingFragment StoreEntitySet="Destinations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trackings">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Tracking)">
+        <MappingFragment StoreEntitySet="Trackings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="ConsignNo" ColumnName="ConsignNo" />
+          <ScalarProperty Name="CustName" ColumnName="CustName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ConsignmentDestination" TypeName="Model1.ConsignmentDestination" StoreEntitySet="Consignments">
+      <EndProperty Name="Destination">
+        <ScalarProperty Name="Id" ColumnName="Destination_Id" />
+      </EndProperty>
+      <EndProperty Name="Consignment">
+        <ScalarProperty Name="ConsignNo" ColumnName="ConsignNo" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DestinationTracking" TypeName="Model1.DestinationTracking" StoreEntitySet="Destinations">
+      <EndProperty Name="Tracking">
+        <ScalarProperty Name="Id" ColumnName="Tracking_Id" />
+      </EndProperty>
+      <EndProperty Name="Destination">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ConsignmentTracking" TypeName="Model1.ConsignmentTracking" StoreEntitySet="Consignments">
+      <EndProperty Name="Tracking">
+        <ScalarProperty Name="Id" ColumnName="Tracking_Id" />
+      </EndProperty>
+      <EndProperty Name="Consignment">
+        <ScalarProperty Name="ConsignNo" ColumnName="ConsignNo" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
 </Mapping>
