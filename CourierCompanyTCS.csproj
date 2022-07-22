@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Consignment.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
+      <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CourierTCS.Context.cs">
       <AutoGen>True</AutoGen>
@@ -73,10 +73,10 @@
       <DependentUpon>CourierTCS.tt</DependentUpon>
     </Compile>
     <Compile Include="Customer.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
+      <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Destination.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
+      <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -105,8 +105,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoreModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoreModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StoreModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Tracking.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
+      <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +160,16 @@
     <Content Include="Model2.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model2.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="StoreModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StoreModel.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="StoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>StoreModel.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
   </ItemGroup>
